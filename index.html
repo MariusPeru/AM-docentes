@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayuda Memoria Detallada: Mesa de Trabajo Docentes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: La aplicación ha sido reestructurada para manejar mayor profundidad de contenido. Se mantiene la navegación principal por pestañas (Diagnóstico, Análisis Legislativo, Estrategia), pero dentro de cada pestaña se utiliza un sistema de acordeones para organizar los subtemas. Esta estructura jerárquica permite al usuario explorar el panorama general y profundizar en detalles específicos sin sentirse abrumado. Se añaden cuadros comparativos y preguntas de autoevaluación interactivas para una preparación más efectiva. Se añade una nueva pestaña "Asistente IA" con funciones generativas (Gemini API) para crear argumentos y borradores de comunicación. -->
+    <!-- Visualization & Content Choices: Se han reemplazado los gráficos simples por tablas detalladas extraídas del informe de investigación, como solicitó el usuario. El objetivo es 'Organizar' y 'Comparar' información legal y financiera compleja de manera clara (Tablas 1 y 2). Para 'Informar' y 'Sintetizar', se utilizan listas y párrafos explicativos en los acordeones. Las preguntas de autoevaluación interactivas (HTML/JS) tienen el objetivo de 'Reforzar' el conocimiento. Las nuevas funciones de IA utilizan la API de Gemini para generar texto (argumentos, correos) basado en prompts contextualizados, añadiendo una capa de asistencia proactiva. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #333;
+        }
+        .nav-button {
+            transition: all 0.3s ease;
+        }
+        .nav-button.active {
+            background-color: #A67B5B;
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .table-auto {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .table-auto th, .table-auto td {
+            border: 1px solid #EADDD7;
+            padding: 12px;
+            text-align: left;
+        }
+        .table-auto th {
+            background-color: #FFF8F2;
+            font-weight: 600;
+        }
+        .quiz-answer {
+            display: none;
+            background-color: #F0FDF4;
+            border-left: 4px solid #22C55E;
+            padding: 10px;
+            margin-top: 8px;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #A67B5B;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-7xl">
+
+        <header class="text-center mb-8 border-b border-gray-200 pb-6">
+            <h1 class="text-3xl sm:text-4xl font-bold text-[#3D352E] mb-2">Ayuda Memoria: Mesa de Trabajo Docentes</h1>
+            <p class="text-lg text-gray-500">27 de Agosto de 2025</p>
+            <p class="mt-4 max-w-3xl mx-auto text-gray-600">
+                Guía interactiva y detallada para la negociación, ahora con un asistente de IA para potenciar su preparación.
+            </p>
+        </header>
+
+        <nav class="flex justify-center flex-wrap gap-2 sm:gap-4 mb-8">
+            <button data-target="diagnostico" class="nav-button active text-sm sm:text-base py-2 px-4 rounded-full bg-white shadow-sm border border-gray-200 hover:bg-gray-100">1. Diagnóstico</button>
+            <button data-target="analisis" class="nav-button text-sm sm:text-base py-2 px-4 rounded-full bg-white shadow-sm border border-gray-200 hover:bg-gray-100">2. Análisis Legislativo</button>
+            <button data-target="estrategia" class="nav-button text-sm sm:text-base py-2 px-4 rounded-full bg-white shadow-sm border border-gray-200 hover:bg-gray-100">3. Estrategia</button>
+            <button data-target="ia-assistant" class="nav-button text-sm sm:text-base py-2 px-4 rounded-full bg-white shadow-sm border border-gray-200 hover:bg-gray-100">4. Asistente IA ✨</button>
+        </nav>
+
+        <main id="main-content">
+            <!-- SECCIÓN 1: DIAGNÓSTICO -->
+            <section id="diagnostico" class="content-section active space-y-4">
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <h2 class="text-2xl font-bold text-[#A67B5B] mb-4">Diagnóstico Integral de la Deuda Social</h2>
+                    <p class="mb-6 text-gray-600">
+                        Esta sección detalla el origen legal de la deuda, el funcionamiento del mecanismo de pago actual y los reclamos del magisterio. Es la base para entender la magnitud del problema.
+                    </p>
+                    
+                    <div class="border-b border-gray-200">
+                        <button class="accordion-toggle w-full text-left py-4 px-2 flex justify-between items-center">
+                            <h3 class="text-xl font-semibold text-[#3D352E]">1.1 Fundamento Histórico y Legal</h3>
+                            <span class="transform transition-transform duration-300">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-4">
+                                <p class="mb-4">La deuda no es una petición, es la exigencia de un derecho adquirido bajo la <strong>Ley del Profesorado N° 24029</strong>. Esta ley reconocía bonificaciones que se integraron al patrimonio de los docentes, como la bonificación por preparación de clases (equivalente al 30% de la remuneración total). La derogación de esta ley no extinguió la obligación del Estado de pagar estos beneficios ya generados.</p>
+                                <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg">
+                                    <h4 class="font-bold">Autoevaluación Rápida</h4>
+                                    <p class="text-sm mt-2">¿Cuál es el principal argumento jurídico que sustenta el reclamo de la deuda social?</p>
+                                    <button class="text-sm text-blue-600 hover:underline mt-1 quiz-toggle">Mostrar respuesta</button>
+                                    <div class="quiz-answer"><p>El principio de <strong>"Derechos Adquiridos"</strong>, que establece que un derecho válidamente incorporado al patrimonio de una persona no puede ser desconocido por una ley posterior.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-200">
+                        <button class="accordion-toggle w-full text-left py-4 px-2 flex justify-between items-center">
+                            <h3 class="text-xl font-semibold text-[#3D352E]">1.2 Proceso de Pago 2025 (D.S. N° 134-2025-EF)</h3>
+                            <span class="transform transition-transform duration-300">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-4">
+                                <p class="mb-4">El mecanismo actual transfiere S/ 200 millones para pagar deudas <strong>solo a quienes tienen sentencia judicial firme</strong>. Los fondos son insuficientes, por lo que se aplican criterios de priorización por vulnerabilidad (enfermedad y edad), resultando en pagos fraccionados y topes muy bajos que no cubren el total adeudado.</p>
+                                <h4 class="font-semibold text-lg mb-2">Matriz de Priorización y Montos Asignados</h4>
+                                <div class="overflow-x-auto">
+                                    <table class="table-auto">
+                                        <thead>
+                                            <tr><th>Grupo Prioritario</th><th>Criterio de Priorización</th><th>Monto Máximo Asignado (S/)</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td>Prioridad A/B</td><td>Enfermedad en fase terminal.</td><td class="font-bold">S/ 30,000</td></tr>
+                                            <tr><td>Prioridad B/C</td><td>Enfermedad en fase avanzada y/o discapacidad severa.</td><td class="font-bold">S/ 10,000</td></tr>
+                                            <tr><td>Prioridad D/E</td><td>Persona mayor a 65 años de edad.</td><td class="font-bold">S/ 3,000</td></tr>
+                                            <tr><td>Prioridad F/Grupo 5</td><td>Persona menor o igual a 65 años de edad.</td><td class="font-bold">S/ 2,500</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg mt-4">
+                                    <h4 class="font-bold">Autoevaluación Rápida</h4>
+                                    <p class="text-sm mt-2">Un docente de 70 años sin enfermedad grave, con una deuda reconocida de S/ 50,000, ¿cuánto recibirá como máximo según el D.S. 134-2025-EF?</p>
+                                    <button class="text-sm text-blue-600 hover:underline mt-1 quiz-toggle">Mostrar respuesta</button>
+                                    <div class="quiz-answer"><p>Recibirá un máximo de <strong>S/ 3,000</strong>, ya que pertenece al grupo prioritario de "Persona mayor a 65 años de edad".</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-200">
+                        <button class="accordion-toggle w-full text-left py-4 px-2 flex justify-between items-center">
+                            <h3 class="text-xl font-semibold text-[#3D352E]">1.3 Puntos Críticos y Reclamos del Magisterio</h3>
+                            <span class="transform transition-transform duration-300">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-4">
+                                <ul class="list-disc list-inside space-y-2 mb-4">
+                                    <li><strong>Exclusión Sistemática:</strong> El requisito de tener sentencia judicial deja fuera a la mayoría.</li>
+                                    <li><strong>Pagos Insuficientes:</strong> Los montos son percibidos como una burla ("pago gota a gota").</li>
+                                    <li><strong>Injusticia del Proceso Judicial:</strong> Obliga a los jubilados a costosos y largos litigios contra el Estado.</li>
+                                    <li><strong>Falta de Transparencia:</strong> Información dispersa y burocracia en las UGEL.</li>
+                                </ul>
+                                <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg">
+                                    <h4 class="font-bold">Autoevaluación Rápida</h4>
+                                    <p class="text-sm mt-2">¿Cuál es la principal barrera que impide a la mayoría de docentes acceder al pago de la deuda social?</p>
+                                    <button class="text-sm text-blue-600 hover:underline mt-1 quiz-toggle">Mostrar respuesta</button>
+                                    <div class="quiz-answer"><p>La obligación de contar con una <strong>sentencia judicial con calidad de cosa juzgada</strong>.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 2: ANÁLISIS LEGISLATIVO -->
+            <section id="analisis" class="content-section">
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <h2 class="text-2xl font-bold text-[#A67B5B] mb-4">Análisis Legislativo: La Transición Normativa</h2>
+                    <p class="mb-6 text-gray-600">
+                        Aquí se comparan los derechos de la antigua Ley del Profesorado con la actual Ley de Reforma Magisterial para evidenciar qué se perdió en la transición y fundamentar el proyecto de ley de restitución.
+                    </p>
+                    
+                    <div class="border-b border-gray-200">
+                        <button class="accordion-toggle w-full text-left py-4 px-2 flex justify-between items-center">
+                            <h3 class="text-xl font-semibold text-[#3D352E]">2.1 Cuadro Comparativo de Derechos (Ley 24029 vs. Ley 29944)</h3>
+                            <span class="transform transition-transform duration-300">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-4">
+                                <p class="mb-4">La Ley de Reforma Magisterial (N° 29944) derogó la Ley del Profesorado, eliminando o modificando sustancialmente beneficios clave sin establecer un mecanismo de liquidación para los derechos ya generados. Esta tabla lo demuestra.</p>
+                                <div class="overflow-x-auto">
+                                    <table class="table-auto text-sm">
+                                        <thead>
+                                            <tr><th>Beneficio/Derecho</th><th>Ley N° 24029 (Derogada)</th><th>Ley N° 29944 (Vigente)</th><th>Estatus en la Transición</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td><strong>Bonificación por Prep. de Clases</strong></td><td>Art. 48 (30% rem. total)</td><td>No contemplado (integrado a la RIM)</td><td class="font-bold text-red-600">Eliminado</td></tr>
+                                            <tr><td><strong>Subsidio por Luto y Sepelio</strong></td><td>Art. 21</td><td>Art. 41(q) y 62</td><td class="font-bold text-green-600">Mantenido</td></tr>
+                                            <tr><td><strong>Descuento en Transporte Público</strong></td><td>Art. 26</td><td>No contemplado</td><td class="font-bold text-red-600">Eliminado</td></tr>
+                                            <tr><td><strong>Apoyo a Producción Intelectual</strong></td><td>Apoyo directo del MINEDU</td><td>Considerado mérito para ascenso</td><td class="font-bold text-yellow-600">Modificado</td></tr>
+                                            <tr><td><strong>Gratificaciones (Fiestas Patrias/Navidad)</strong></td><td>Medio sueldo básico</td><td>"Aguinaldo" de monto fijo</td><td class="font-bold text-yellow-600">Modificado (Reducido)</td></tr>
+                                            <tr><td><strong>Asignación por Tiempo de Servicios (CTS)</strong></td><td>Una remuneración total por año</td><td>14% de la RIM por año, con topes</td><td class="font-bold text-yellow-600">Modificado (Reducido)</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg mt-4">
+                                    <h4 class="font-bold">Autoevaluación Rápida</h4>
+                                    <p class="text-sm mt-2">Según la tabla, ¿qué sucedió con el derecho al descuento en transporte público en la transición a la Ley 29944?</p>
+                                    <button class="text-sm text-blue-600 hover:underline mt-1 quiz-toggle">Mostrar respuesta</button>
+                                    <div class="quiz-answer"><p>Fue completamente <strong>eliminado</strong>, ya que no se contempla en la nueva ley.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 3: ESTRATEGIA -->
+            <section id="estrategia" class="content-section">
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <h2 class="text-2xl font-bold text-[#A67B5B] mb-4">Propuestas y Estrategia de Negociación</h2>
+                    <p class="mb-6 text-gray-600">
+                        Este es el plan de acción. Se presentan propuestas concretas y sistémicas para pasar de un modelo de pagos parciales a una solución definitiva, justa y transparente.
+                    </p>
+                    
+                    <div class="border-b border-gray-200">
+                        <button class="accordion-toggle w-full text-left py-4 px-2 flex justify-between items-center">
+                            <h3 class="text-xl font-semibold text-[#3D352E]">3.1 Propuesta Central: Vía Administrativa Universal</h3>
+                            <span class="transform transition-transform duration-300">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-4">
+                                <p class="mb-4">La demanda principal es la promulgación de una ley que cree un <strong>procedimiento administrativo especial</strong> para el reconocimiento y registro de la deuda a favor de TODOS los docentes afectados, sin necesidad de juicio. Esto ataca la raíz del problema, eliminando la barrera de la judicialización.</p>
+                                <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg">
+                                    <h4 class="font-bold">Autoevaluación Rápida</h4>
+                                    <p class="text-sm mt-2">¿Cuál es el objetivo de proponer una "Vía Administrativa Universal"?</p>
+                                    <button class="text-sm text-blue-600 hover:underline mt-1 quiz-toggle">Mostrar respuesta</button>
+                                    <div class="quiz-answer"><p>Eliminar la necesidad de un proceso judicial para que se reconozca la deuda, haciéndola accesible a todos los docentes con ese derecho.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-200">
+                        <button class="accordion-toggle w-full text-left py-4 px-2 flex justify-between items-center">
+                            <h3 class="text-xl font-semibold text-[#3D352E]">3.2 Propuestas Complementarias Clave</h3>
+                            <span class="transform transition-transform duration-300">▼</span>
+                        </button>
+                        <div class="accordion-content">
+                            <div class="p-4">
+                                <ul class="list-decimal list-inside space-y-3">
+                                    <li><strong>Cronograma de Pago Vinculante:</strong> Exigir una ley con un cronograma de pago multianual (ej. 5-7 años) para cancelar el 100% de la deuda. Esto da certeza jurídica y obliga al Estado a planificar.</li>
+                                    <li><strong>Actualización de la Deuda:</strong> Solicitar que el monto se actualice con intereses legales para compensar la inflación por las décadas de mora.</li>
+                                    <li><strong>Plataforma de Transparencia:</strong> Crear un portal web único donde cada docente consulte con su DNI el estado de su pago, el monto total y las fechas programadas. Esto reconstruye la confianza.</li>
+                                </ul>
+                                <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg mt-4">
+                                    <h4 class="font-bold">Autoevaluación Rápida</h4>
+                                    <p class="text-sm mt-2">Además de la vía administrativa, ¿qué propuesta busca dar certeza sobre cuándo se pagará el total de la deuda?</p>
+                                    <button class="text-sm text-blue-600 hover:underline mt-1 quiz-toggle">Mostrar respuesta</button>
+                                    <div class="quiz-answer"><p>La creación de un <strong>cronograma de pago vinculante y presupuestado</strong> por ley.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SECCIÓN 4: ASISTENTE IA -->
+            <section id="ia-assistant" class="content-section">
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <h2 class="text-2xl font-bold text-[#A67B5B] mb-4">Asistente de IA para Negociación ✨</h2>
+                    <p class="mb-6 text-gray-600">
+                        Utilice el poder de la IA para preparar sus intervenciones. Esta herramienta está diseñada para ayudarle a estructurar sus ideas con mayor eficacia.
+                    </p>
+
+                    <div class="max-w-2xl mx-auto">
+                        <!-- Generador de Argumentos -->
+                        <div class="bg-gray-50 p-6 rounded-lg border">
+                            <h3 class="text-xl font-semibold text-[#3D352E] mb-3">Generador de Argumentos</h3>
+                            <p class="text-sm text-gray-500 mb-4">Escriba una idea o punto clave que quiera exponer en la reunión. La IA lo convertirá en un argumento estructurado y persuasivo.</p>
+                            <textarea id="argument-input" class="w-full p-2 border rounded-md" rows="3" placeholder="Ej: El pago 'gota a gota' es una falta de respeto a nuestra trayectoria..."></textarea>
+                            <button id="generate-argument-btn" class="mt-3 w-full bg-[#A67B5B] text-white py-2 px-4 rounded-md hover:bg-[#8e694d] transition-colors flex items-center justify-center">
+                                ✨ Generar Argumento
+                            </button>
+                            <div id="argument-loader" class="hidden mt-4 mx-auto loader"></div>
+                            <div id="argument-output" class="mt-4 p-4 bg-white border rounded-md whitespace-pre-wrap text-sm"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navButtons = document.querySelectorAll('.nav-button');
+            const contentSections = document.querySelectorAll('.content-section');
+            const accordionToggles = document.querySelectorAll('.accordion-toggle');
+            const quizToggles = document.querySelectorAll('.quiz-toggle');
+
+            const switchTab = (targetId) => {
+                navButtons.forEach(button => {
+                    button.classList.toggle('active', button.dataset.target === targetId);
+                });
+                contentSections.forEach(section => {
+                    section.classList.toggle('active', section.id === targetId);
+                });
+            };
+            
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    switchTab(button.dataset.target);
+                });
+            });
+
+            accordionToggles.forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const icon = button.querySelector('span');
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.style.transform = 'rotate(180deg)';
+                    } 
+                });
+            });
+
+            quizToggles.forEach(button => {
+                button.addEventListener('click', () => {
+                    const answer = button.nextElementSibling;
+                    const isVisible = answer.style.display === 'block';
+                    answer.style.display = isVisible ? 'none' : 'block';
+                    button.textContent = isVisible ? 'Mostrar respuesta' : 'Ocultar respuesta';
+                });
+            });
+
+            // --- Gemini API Integration ---
+            const argumentInput = document.getElementById('argument-input');
+            const generateArgumentBtn = document.getElementById('generate-argument-btn');
+            const argumentLoader = document.getElementById('argument-loader');
+            const argumentOutput = document.getElementById('argument-output');
+
+            const apiKey = "";
+
+            async function callGeminiAPI(prompt, loader, outputElement) {
+                loader.style.display = 'block';
+                outputElement.textContent = '';
+                
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                const payload = {
+                    contents: [{ parts: [{ text: prompt }] }]
+                };
+
+                try {
+                    let response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                         throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const text = result.candidates[0].content.parts[0].text;
+                    outputElement.textContent = text.trim();
+
+                } catch (error) {
+                    console.error("Error calling Gemini API:", error);
+                    outputElement.textContent = 'Hubo un error al generar la respuesta. Por favor, inténtelo de nuevo.';
+                } finally {
+                    loader.style.display = 'none';
+                }
+            }
+
+            generateArgumentBtn.addEventListener('click', () => {
+                const userInput = argumentInput.value.trim();
+                if (!userInput) {
+                    argumentOutput.textContent = 'Por favor, ingrese una idea para desarrollar.';
+                    return;
+                }
+                const prompt = `Actúa como un asesor legal y sindicalista experto en los derechos del magisterio peruano. Basado en la siguiente idea del usuario y el contexto de la deuda social (Ley 24029, Ley 29944), genera un argumento sólido y bien estructurado en 3 párrafos para usar en una mesa de negociación. El tono debe ser firme, respetuoso y basado en la justicia. Idea del usuario: "${userInput}"`;
+                callGeminiAPI(prompt, argumentLoader, argumentOutput);
+            });
+
+            // Iniciar en la primera pestaña
+            switchTab('diagnostico');
+        });
+    </script>
+
+</body>
+</html>
