@@ -333,9 +333,15 @@
             quizToggles.forEach(button => {
                 button.addEventListener('click', () => {
                     const answer = button.nextElementSibling;
+                    const accordionContent = button.closest('.accordion-content');
+
                     const isVisible = answer.style.display === 'block';
                     answer.style.display = isVisible ? 'none' : 'block';
                     button.textContent = isVisible ? 'Mostrar respuesta' : 'Ocultar respuesta';
+
+                    if (accordionContent && accordionContent.style.maxHeight) {
+                        accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                    }
                 });
             });
 
